@@ -1,0 +1,43 @@
+.simple-rainbow-btn {
+  position: relative;
+  display: inline-block;
+  padding: 0.75em 2em;
+  font-size: 1.1rem;
+  font-weight: 300 !important;
+  color: #fff;
+  background: #111;
+  border-radius: 1.5em;
+  border: 1px solid rgba(255,255,255,0.18);
+  cursor: pointer;
+  overflow: hidden;
+  z-index: 1;
+  transition: box-shadow 0.2s, transform 0.2s, border-color 0.2s;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.15);
+  font-family: 'Figtree', Arial, Helvetica, sans-serif;
+}
+
+.simple-rainbow-btn::before {
+  content: "";
+  position: absolute;
+  left: -10%;
+  right: -10%;
+  bottom: -6px;
+  height: 18px;
+  border-bottom-left-radius: 2em;
+  border-bottom-right-radius: 2em;
+  background: linear-gradient(90deg, #ff00cc, #3333ff, #00ffcc, #ffcc00, #ff00cc);
+  filter: blur(16px) brightness(2.2);
+  opacity: 0.95;
+  z-index: 2;
+  pointer-events: none;
+  transition: filter 0.2s, opacity 0.2s;
+}
+
+.simple-rainbow-btn:hover::before {
+  filter: blur(28px) brightness(2.7);
+  opacity: 1;
+}
+
+.simple-rainbow-btn:active {
+  transform: scale(0.97);
+} 
