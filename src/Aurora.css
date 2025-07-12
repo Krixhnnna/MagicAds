@@ -1,12 +1,22 @@
 body {
   font-family: 'Figtree', Arial, Helvetica, sans-serif;
   font-weight: 400;
+  background: #111;
+}
+
+html, body {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+  max-width: 100vw;
+  min-height: 100vh;
+  height: auto;
+  margin: 0;
+  padding: 0;
 }
 
 .landing-bg {
-  min-height: 100vh;
   width: 100vw;
-  background: #111;
+  background: transparent;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -15,8 +25,19 @@ body {
   z-index: 0;
 }
 
+/* Grid overlay for background */
+.grid-bg {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  opacity: 0.18;
+  background-image: linear-gradient(transparent 39px, #1a2a44 1px), linear-gradient(90deg, transparent 39px, #1a2a44 1px);
+  background-size: 40px 40px;
+}
+
 .bg-semicircle {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 50%;
   transform: translateX(-50%) translateY(-30%);
@@ -24,10 +45,47 @@ body {
   height: 60vw;
   max-width: 1600px;
   max-height: 800px;
-  background: radial-gradient(ellipse at center, rgba(0,120,255,0.35) 0%, rgba(0,120,255,0.12) 60%, rgba(0,0,0,0) 100%);
-  filter: blur(32px);
+  /* Blue spotlight effect centered on hero text */
+  background: radial-gradient(ellipse 60% 40% at 50% 35%, rgba(0,180,255,0.85) 0%, rgba(0,120,255,0.32) 40%, rgba(0,120,255,0.12) 70%, rgba(0,0,0,0) 100%);
+  filter: blur(36px) saturate(1.3);
   z-index: 1;
   pointer-events: none;
+}
+
+/* Glass card for showcase image */
+.glass-card {
+  background: rgba(20, 40, 80, 0.45);
+  border-radius: 2rem;
+  box-shadow: 0 8px 40px 0 rgba(0, 120, 255, 0.18), 0 1.5px 8px rgba(0,0,0,0.10);
+  border: 1.5px solid rgba(0,120,255,0.18);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  padding: 2rem 2rem 1rem 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Navbar pill refinement */
+nav div[style*="border-radius: 2.5em"] {
+  background: rgba(20, 40, 80, 0.22) !important;
+  border: 1.5px solid rgba(0,120,255,0.18) !important;
+  box-shadow: 0 4px 24px 0 rgba(0,120,255,0.10) !important;
+  backdrop-filter: blur(18px) !important;
+  -webkit-backdrop-filter: blur(18px) !important;
+}
+
+/* Glassy blue button refinement */
+.glass-btn {
+  background: rgba(0,120,255,0.13);
+  border: 1px solid rgba(0,120,255,0.25);
+  color: #fff;
+  box-shadow: 0 8px 32px rgba(0,120,255,0.10), 0 1.5px 8px rgba(255,255,255,0.10);
+}
+
+.glass-btn:hover {
+  background: rgba(0,120,255,0.22);
+  border: 1.5px solid rgba(0,120,255,0.32);
 }
 
 .hero-headline {
@@ -81,26 +139,6 @@ body {
   background: #000;
 } 
 
-.glass-btn {
-  background: rgba(255,255,255,0.12);
-  border: 0.5px solid rgba(255,255,255,0.5);
-  border-radius: 16px;
-  padding: 16px 32px;
-  font-size: clamp(1rem, 2.5vw, 1.25rem);
-  font-weight: 600;
-  color: #fff;
-  cursor: pointer;
-  box-shadow: 0 8px 32px rgba(82, 39, 255, 0.10), 0 1.5px 8px rgba(255,255,255,0.10);
-  transition: box-shadow 0.3s, background 0.3s, border 0.3s, transform 0.2s cubic-bezier(.4,2,.6,1);
-  user-select: none;
-  margin-bottom: 2.5rem;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  outline: none;
-  position: relative;
-  overflow: hidden;
-}
-
 .glass-btn::before {
   content: "";
   position: absolute;
@@ -129,4 +167,71 @@ body {
   100% {
     left: 130%;
   }
+} 
+
+.shine-gradient-animated {
+  background: linear-gradient(90deg, #42c8ce, #0078ff, #42c8ce 80%);
+  background-size: 200% auto;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent !important;
+  -webkit-text-fill-color: transparent;
+  animation: shine-move-gradient 2.5s linear infinite;
+  position: relative;
+  display: block;
+}
+
+@keyframes shine-move-gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 200% 50%;
+  }
+} 
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 400;
+  font-size: 1.08rem;
+  opacity: 0.92;
+  padding: 0.18em 1.1em;
+  border-radius: 2em;
+  transition: color 0.18s, background 0.18s, box-shadow 0.18s;
+  position: relative;
+}
+
+.nav-link.active {
+  color: #3ecbff;
+  background: rgba(0,180,255,0.13);
+  box-shadow: 0 0 8px 0 rgba(0,180,255,0.18);
+  opacity: 1;
+}
+
+.nav-link:hover {
+  color: #3ecbff;
+  background: rgba(0,180,255,0.10);
+  box-shadow: 0 0 8px 0 rgba(0,180,255,0.13);
+  opacity: 1;
+} 
+
+.navbar-compressed {
+  /* Optional: add a subtle shadow or background if you want */
+}
+
+.nav-link.icon-only {
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+  min-width: 0;
+  justify-content: center;
+  font-size: 1.18rem;
+  transition: padding 0.35s, font-size 0.35s;
+}
+
+.nav-link.icon-only span, .nav-link.icon-only svg + span {
+  display: none !important;
 } 
